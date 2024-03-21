@@ -1,8 +1,12 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 
-import Navbar from './components/navbar/Navbar'
-import Home from './components/pages/homePage'
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Pages/HomePage'
+import AOS from "aos"
+import "aos/dist/aos.css"
+import AboutUs from './components/Pages/AboutUs'
+import Service from './components/Pages/services'
 
 const App = () => {
   //Dark Mode Feature
@@ -21,11 +25,24 @@ useEffect(() => {
   }
 }, [theme])
 
+//AOS initialization
+useEffect(()=>{
+  AOS.init({
+    offset: 200,
+    duration: 600,
+    easing: 'ease-in-sine',
+    delay: 100,
+  });
+  AOS.refresh()
+},[])
+
   return (
     <div>
       <Navbar  
       theme={theme} setTheme = {setTheme}/>
       <Home theme = {theme}/>
+      <AboutUs/>
+      <Service/>
     </div>
   )
 }

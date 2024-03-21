@@ -3,34 +3,34 @@ import { BiSolidSun, BiSolidMoon } from "react-icons/bi";
 const NavLinks = [
   {
     id: "1",
-    name: "HOME",
+    name: "Home",
     link: "/#"
   },
   {
     id: "2",
-    name: "CARS",
+    name: "Cars",
     link: "/#cars"
   },
   {
     id: "3",
-    name: "ABOUT US",
+    name: "About Us",
     link: "/#About"
   },
   {
     id: "4",
-    name: "BOOKINGS",
+    name: "Bookings",
     link: "/#bookings"
   },
 ]
 const reg = [
   {
   id: "1",
-  name: "SIGN-UP",
+  name: "SignUp",
   link: "/#sign-up"
 },
 {
   id: "2",
-  name: "LOG-IN",
+  name: "LogIn",
   link: "/#log-in"
 }, 
 ]
