@@ -33,13 +33,13 @@ const skillsData = [
         ),
         link: "#",
         description: 'You also get to meet experienced drivers, if you just want to save yourself the stress of driving.',
-        aosDelay: "0",   
+        aosDelay: "1000",   
     },   
 ]
 
 const services = () => {
   return (
-    <div className='py-14 dark:bg-black
+    <div className='py-14 dark:bg-black 
     dark:text-white sm:min-h[600px] sm:grid
     sm:place-items-center'>
        <div className="container">
@@ -54,7 +54,7 @@ const services = () => {
                         data-aos=" fade-up"
                         data-aos-delay= {skill.aosDelay}
                         className='card-text-center group
-                        space-y-3 sm:space-y-6 p-4 sm:py-24 bg-dark hover:bg-primary
+                        space-y-3 sm:space-y-6 p-4 sm:py-8 bg-dark hover:bg-primary
                         duration-100 text-white hover:text-black rounded-lg '
                        >
                         <div
