@@ -22,38 +22,45 @@ const hirerSchema = mongoose.Schema({
                 type: String,
                  required:[true, 'please enter your phone'] 
                 },
-            carName: {
+            carList: {
                 type: String, 
                 required: true},
             pickupDate: {
-                type: Date,
-                required: [true, 'please enter car pick update']
+                type: String,
+                required: [true, 'please enter car pick up date']
             },
             returnDate: {
-                type: Date, 
+                type: String, 
                 required: [true, 'please enter car return date']
             },
 }, {timestamps: true
 })
+
+
 //model for users authentication
-const userSchema = mongoose.Schema({
-    username:{
-        type: String,
-        required: true,
-    },
-    password:{
-        type: String,
-    },
-    role: {
-        type: String,
-        enum: ['Admin', 'User'],
-        default: 'User'
-    }
-}, {timestamps: true
-})
+// const userSchema = mongoose.Schema({
+//     username:{
+//         type: String,
+//         required: true,
+//     },
+//     password:{
+//         type: String,
+//     },
+//     // email: {
+//     //     type: String, 
+//     //     required: [true, 'please enter your email'],
+//     //     unique: true
+//     // },
+//     role: {
+//         type: String,
+//         enum: ['Admin', 'User'],
+//         default: 'User'
+//     }
+// }, {timestamps: true
+// })
 
 const Hirer = mongoose.model('Hirer', hirerSchema)
-const User = mongoose.model('User', userSchema)
+// const User = mongoose.model('User', userSchema)
 
-module.exports = {Hirer, User}
+module.exports = Hirer
 

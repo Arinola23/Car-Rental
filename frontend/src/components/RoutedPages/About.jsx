@@ -5,7 +5,7 @@ import {Link } from "react-router-dom"
 export const About = () => {
   return (
     <div className="dark:bg-black bg-slate-100 dark:text-white duration-300
-       sm:min-h-[600px] sm:grid:place-items-center">
+    sm:min-h-[600px] sm:grid:place-items-center">
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center pt-24">
             <div data-aos ="fade-down"
@@ -17,17 +17,16 @@ export const About = () => {
             <div className="space-y-5 sm:p-16 pb-6">
              <div>
                 <h1 data-aos='fade-up'
-                className="text 3xl sm:text-4xl font-bold font-serif"> About Us</h1>
+                className="text-3xl p-5 sm:text-4xl font-bold font-serif"> About Us</h1>
                 <p data-aos='fade-up'>
                 At CarRental, we offer the best smooth ride. We're more than just a car rental service we're your trusted partner in every journey. With years of experience in the industry, we've built a reputation for reliability, affordability, and exceptional customer service.
                 </p>
-                <div>
+                {/* <div>
                    <a href="#"><button data-aos='fade-up'
                  className=" button-outline">
-                    Click
+                  Click
                 </button></a>
-                
-                </div>
+                </div> */}
              </div>                  
             </div>
         </div>

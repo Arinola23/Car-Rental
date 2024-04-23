@@ -61,7 +61,7 @@ const ResponsiveMenu = ({ showMenu }) => {
           <ul className="space-y-4 text-xl">
             {NavLinks.map((data) => {
               return (
-                <div key={data.id}>
+                <div key={data.name}>
                   <Link to={data.Link}><li className=" hover:text-primary
                                              hover:border-primary
                                               transition-colors duration-500
@@ -70,7 +70,7 @@ const ResponsiveMenu = ({ showMenu }) => {
             )})}
                 {reg.map((data) => {
               return (
-                <div key={data.id}>
+                <div key={data.name}>
                   <Link to={data.Link}><li  className=" hover:text-primary
                                             hover:border-primary
                                              transition-colors duration-500

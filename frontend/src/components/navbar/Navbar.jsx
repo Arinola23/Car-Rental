@@ -29,14 +29,14 @@ import {Link} from "react-router-dom"
 
   },
   {
-    id: "3",
+    id: "4",
     name: "Contact Us",
     Link: '/ContactUs',
     // Link: `${<Link to ="/#AboutUs"/>}`
 
   },
   {
-    id: "4",
+    id: "5",
     name: "Bookings",
     Link: "/bookings",
   },
@@ -135,7 +135,7 @@ const Navbar = ({ theme, setTheme }) => {
             </div>
           </div>
         </div>
-        <ResponsiveMenu showMenu={showMenu} />
+        <ResponsiveMenu showMenu={showMenu}/>
       </div>
     </nav>
   );

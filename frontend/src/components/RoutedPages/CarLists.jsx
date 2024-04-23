@@ -3,6 +3,7 @@ import car1 from "../../assets/car1.webp"
 import car2 from "../../assets/car2.webp"
 import car3 from "../../assets/redcar.png"
 import car4 from "../../assets/orangecar.jpg"
+import {Link} from "react-router-dom"
 
 const carlistData = [
     {  
@@ -22,7 +23,7 @@ const carlistData = [
 
     },
     {   
-        name: "Nissan",
+        name: "Nissan Red",
         rentalPrice: "$35/day",
         image: car3,
         aosDelay:"600",
@@ -43,14 +44,14 @@ const carLists = () => {
     <div className='pb-14 pt-12 bg-white dark:bg-dark dark:text-white'>
         <div className='container'>
             {/* carlist head */}
-            <h1 className='text 3xl sm:text-4xl
+            <h1 className='text-3xl sm:text-4xl
             font-semibold font-serif mb-3'>Cars Available for rent</h1>
             <p data-aos="fade-up" className='text-md pb-10'>Choose any car of your choice. 
             <br /> The cars below are available for rent.</p>
 
               {/* carlist card */}
            <div>
-                <div className='grid grid-cols-1
+                <div className='grid grid-cols-2
                 sm:grid-cols-2 md:grid-cols-3 gap-16'>
                     {
                       carlistData.map((car) => {
@@ -75,14 +76,14 @@ const carLists = () => {
                                 <p>{car.rentalPrice}</p>
                                 <a href="#">Details</a>
                             </div >
-                            <p className="text-xl font-semibold absol">{car.km}</p>
+                            <p className="text-xl font-semibold ">{car.km}</p>
                         </div>          
                         )})}             
                  </div>   
                  <div className='grid place-content-center mt-8'>
                     <button data-aos= "fade-up"
                     className='button-outline'>
-                        Click to Choose
+                        <Link to="/Bookings">Click to Choose</Link>
                     </button>
                 </div>
             </div>

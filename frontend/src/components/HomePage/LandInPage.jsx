@@ -8,6 +8,7 @@ import Testimony from "../Testimony/testimony";
 import AppStore from "../AppStoreBanner/appStore";
 import Contact from "./contact";
 import Footer from "../footer/footer";
+import { Link } from "react-router-dom";
 
 const home = ({ theme }) => {
   return (
@@ -57,7 +58,7 @@ const home = ({ theme }) => {
                 Regular hirers also receive additional benefits.
               </p>
               <button className="btn bg-primary text-black px-6 py-2 rounded-md hover:bg-primary/85 duration-300 mt-6">
-                Get Started
+                  <Link to="/Bookings">Get Started</Link>
               </button>
             </div>
           </div>

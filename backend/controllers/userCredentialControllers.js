@@ -3,21 +3,23 @@ const Hirer = require('../model/model.js')
 
 const setHirer = asyncHandler(async (req, res) => {
     try {
-        if (!req.body.lastname || !req.body.firstname || !req.body.age || !req.body.email || !req.body.phoneNumber || !req.body.carName || !req.body.pickupDate || !req.body.returnDate) {
+        if (!req.body.lastname || !req.body.firstname || !req.body.age || !req.body.email || !req.body.phoneNumber || !req.body.carList || !req.body.pickupDate || !req.body.returnDate) {
         res.status(400).json({message: 'All fields are required'})
-    } const hirer = await Hirer.create ({
+    } const hirer = await Hirer.create({
         lastname:req.body.lastname, 
         firstname:req.body.firstname, 
         age:req.body.age, 
         email:req.body.email, 
         phoneNumber:req.body.phoneNumber,
-        carName:req.body.carName, 
+        carList:req.body.carList, 
         pickupDate:req.body.pickupDate, 
         returnDate:req.body.returnDate
+        // pickupDate:new Date(), 
+        // returnDate:new Date ()
     })
      res.status(202).json( hirer)
     } catch(error) {
-        // console.error(error)
+        console.log(error)
             return res.status(500).json({ message: 'Server error, try again' });
         }
 })

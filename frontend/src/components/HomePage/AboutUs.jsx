@@ -24,7 +24,7 @@ export const AboutUs = () => {
                 <div>
                    <a href="#"><button data-aos='fade-up'
                  className=" button-outline">
-                    Click
+                     <Link to="/AboutUs">Click</Link>
                 </button></a>
                 
                 </div>

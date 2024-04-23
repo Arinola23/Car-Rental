@@ -3,6 +3,7 @@ import car1 from "../../assets/car1.webp"
 import car2 from "../../assets/car2.webp"
 import car3 from "../../assets/redcar.png"
 import car4 from "../../assets/orangecar.jpg"
+import {Link} from "react-router-dom"
 
 const carlistData = [
     {  
@@ -74,7 +75,7 @@ const carList = () => {
                                 <p>{car.rentalPrice}</p>
                                 <a href="#">Details</a>
                             </div >
-                            <p className="text-xl font-semibold absol">{car.km}</p>
+                            <p className="text-xl font-semibold">{car.km}</p>
                         </div>          
                         )})}             
                  </div>   
@@ -89,7 +90,7 @@ const carList = () => {
                 <div className='grid place-content-center mt-8'>
                     <button data-aos= "fade-up"
                     className='button-outline'>
-                        Click to Choose
+                      <Link to= "/Cars">Click to Choose</Link>  
                     </button>
                 </div>
         </div>     
