@@ -11,6 +11,10 @@ import Contact from "./components/RoutedPages/Contact";
 import Bookings from "./components/RoutedPages/Bookings";
 import LogIn from "./components/RoutedPages/logIn";
 import SignUp from "./components/RoutedPages/signUp";
+import ViewPage from "./components/RoutedPages/viewPage";
+import Delete from "./components/RoutedPages/Delete";
+import Edit from "./components/RoutedPages/Edit";
+import { SnackbarProvider } from "notistack";
 
 const App = () => {
   //Dark Mode Feature
@@ -43,18 +47,24 @@ const App = () => {
   return (
     <div>
       <div className="bg-white dark:bg-black dark:text-white">
-        <Router>
-          <Navbar theme={theme} setTheme={setTheme} />
-          <Routes>
-            <Route path="/" element={<LandInPage theme={theme} />}/>
-            <Route path="/Cars" element={<Carlists/>}/>
-            <Route path="/AboutUs" element={<About/>}/>
-            <Route path="/ContactUs" element={<Contact/>}/>
-            <Route path="/Bookings" element={<Bookings/>}/>
-            <Route path="/logIn" element={<LogIn/>}/>
-            <Route path="/signUp" element={<SignUp/>}/>
-          </Routes>
-        </Router>
+        <SnackbarProvider maxSnack={2}>
+            <Router>
+              <Navbar theme={theme} setTheme={setTheme} />
+              <Routes>
+                <Route path="/" element={<LandInPage theme={theme} />}/>
+                <Route path="/Cars" element={<Carlists/>}/>
+                <Route path="/AboutUs" element={<About/>}/>
+                <Route path="/ContactUs" element={<Contact/>}/>
+                <Route path="/Bookings" element={<Bookings/>}/>
+                <Route path="/logIn" element={<LogIn/>}/>
+                <Route path="/signUp" element={<SignUp/>}/>
+                <Route path='/bookings/view/:id' element={<ViewPage/>}></Route>
+                <Route path="/bookings/delete/:id" element={<Delete/>}/>
+                <Route path="/bookings/edit/:id" element={<Edit/>}/> 
+              </Routes>
+            </Router>
+         </SnackbarProvider>
+       
       </div>
     </div>
   );

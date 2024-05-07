@@ -9,14 +9,18 @@ const signIn = () => {
 
 
   return (
-    <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
-      {/* User field */}
-        <div className='d-flex'>
-
-        </div>
+    // <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+    <div className=''>
+        <div className='h-screen'>
+          <div className='font-serif text-5xl text-center py-5'>
+            <h1>SignUp</h1>
+          </div>
+          {/* User field */}
+        
       {/* email field */}
 
       {/* password field */}
+        </div>
     </div>
     
   )

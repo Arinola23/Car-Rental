@@ -41,7 +41,7 @@ const carlistData = [
 
 const carLists = () => {
   return (
-    <div className='pb-14 pt-12 bg-white dark:bg-dark dark:text-white'>
+    <div className='pb-[100px] pt-12 bg-white dark:bg-dark dark:text-white'>
         <div className='container'>
             {/* carlist head */}
             <h1 className='text-3xl sm:text-4xl
@@ -64,7 +64,7 @@ const carLists = () => {
                            mt-8 p-4  rounded-xl relative group' 
                             >
                             <div className='w-full-h-[120px]'>
-                                <img className='w-full h-[120px] object-contain sm:translate-x-8 group-hover:translate-x-16
+                                <img className='w-full h-[120px] object-contain sm:translate-x-8 sm:group-hover:translate-x-16
                                 duration-700' 
                                 src={car.image} alt="" />
                             </div>

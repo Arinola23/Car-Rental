@@ -1,168 +1,215 @@
-import React, {useState}from "react";
+import React, { useState } from "react";
 import bookingscar from "../../assets/landingCar.jpg";
 import { SlCalender } from "react-icons/sl";
-import axios from 'axios'
-import {useNavigate} from "react-router-dom"
-import {useSnackbar} from "notistack"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 import BackButton from "../../components/BackButton";
-import Spinner from '../../components/Spinner';
-
+import Spinner from "../../components/Spinner";
+import { Link } from "react-router-dom";
 
 const CreateBookings = () => {
-   const [lastname, setLastname] = useState('')
-   const [firstname, setFirstname] = useState('')
-   const [age,setAge] = useState('')
-   const [email,setEmail] = useState('')
-   const [phoneNumber,setPhoneNumber] = useState('')
-   const [carList, setCarList] = useState('')
-   const [pickupDate, setPickUpDate] = useState('')
-   const [returnDate, setReturnDate] = useState('')
-   const [loading, setLoading] = useState(false)
-   const navigate = useNavigate()
-   const {enqueueSnackbar} = useSnackbar()
+  const [lastname, setLastname] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [carList, setCarList] = useState("");
+  const [pickupDate, setPickUpDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const {enqueueSnackbar } = useSnackbar();
 
-   const handleSaveBookings = () => {
-      const data = {
-        lastname,
-        firstname,
-        age,
-        email,
-        phoneNumber,
-        carList,
-        pickupDate,
-        returnDate,
-      }
-      setLoading(true);
-      console.log(data);
-      axios
-      .post("http://localhost:6000/bookings", data)
-      .then(()=> {
-        setLoading(false)
-        enqueueSnackbar("Bookings successfully created", {variant:"success"})
-        navigate("/") //navigate to home page
+
+  const handleSaveBookings = () => {
+    const data = {
+      lastname,
+      firstname,
+      age,
+      email,
+      phoneNumber,
+      carList,
+      pickupDate,
+      returnDate,
+    };
+    setLoading(true);
+    // console.log(data);
+    axios
+      .post("http://localhost:6500/bookings", data)
+      .then((response) => { 
+        const bookingId = response.data._id
+        setLoading(false);
+        console.log('Bookings succcessfully created')
+
+        enqueueSnackbar("Bookings successfully created", {
+          variant: "success",
+          
+        });
+        navigate(`/bookings/view/${bookingId}`); //navigate to booking page
       })
       .catch((error) => {
-        setLoading(false)
-        enqueueSnackbar("Error", {variant:"error"})
-        console.log(error)
-      })
-   }
+        setLoading(false);
+        enqueueSnackbar("Error", { variant: "error" });
+        console.log(error);
+      });
+  };
 
-   const method = () => {
-    console.log("Hello World")
-   }
- 
-   return (
-    <div>
-      <div
-        className="  flex flex-col h-screen bg-cover bg-no-repeat items-center justify-center bg-gradient-to-rl from-black p-8"
-        style={{ backgroundImage: `url(${bookingscar})` }}
-        >
-      
-              <div className="grid place-content-center border-4 mt-9 mb-8 rounded-lg sm:border-4 sm:w-[800px] sm:h-[500px] sm:rounded-lg" >
-              <BackButton />
-                <h1 className="text-white text-5xl sm:text-6xl font-bold font-serif tracking-widest sm:pt-4 sm:pl-5 text-center"> Bookings</h1>
-                 {loading ? <Spinner /> : ''}
-              <div >
-                <form className="sm:p-5 p-5">
-                    <label className="text-white text-xl sm:text-2xl font-serif tracking-wider">Lastname</label>
-                    <input 
-                    type="text"
-                    value={lastname} onChange={(e) => setLastname(e.target.value)}
-                    placeholder="Enter Lastname" className='border-2 m-2 w-[230px] text-black'/> 
-                    
-                    <label className="text-white text-xl sm:text-2xl ml-4 font-serif tracking-wider">Firstname</label> 
-                    <input 
-                     type="text" 
-                    value={firstname} onChange={(e) => setFirstname(e.target.value)}
-                   placeholder="Enter Firstname" className='border-2 m-2 w-[230px] text-black'/> <br />
-                    
-                    <label className="text-white text-xl sm:text-2xlfont-serif tracking-wider">Age</label>
-                    <input
-                     type="text" 
-                    value={age} onChange ={(e) => setAge(e.target.value)}
-                     placeholder="Enter Age" className='border-2 m-2 text-black' /> <br />
-                   
-                    <label className="text-white text-xl sm:text-2xl font-serif tracking-wider">Email</label> 
-                    <input
-                     type="text" 
-                    value={email} onChange ={(e) => setEmail(e.target.value)}
-                    placeholder="Enter a valid Email" className='border-2 m-2 text-black' /> <br />
-
-                    <label className="text-white text-xl sm:text-2xl font-serif tracking-wider">Phone Number</label>
-                    <input 
-                     type="text" 
-                    value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}
-                     placeholder="Phone Number" className='border-2 m-2 text-black'  /> <br />
-            
-                    <label className="text-white text-xl sm:text-2xl font-serif tracking-wider">Carlist</label> 
-                     <input 
-                     value={carList} onChange ={(e) => setCarList(e.target.value)}
-                     className='border-2 ml-4 text-black text-xl'placeholder="Type the carname" />
-                           
-                    <br />
-
-                    {/* <input type="text" placeholder="Rent a Car" className='border-2 m-2'  /> <br /> */}
-
-                    <label className="text-white  text-xl sm:text-2xl font-serif tracking-wider"> <SlCalender />Pick up Date</label>
-                      <input
-                       type="text" 
-                      value={pickupDate} onChange={(e)=> setPickUpDate(e.target.value)}
-                       placeholder="dd/mm/yyyy" className='border-2 m-2 text-black'  /> <br />
-
-                      <label className="text-white  text-xl sm:text-2xl font-serif tracking-wider">Return Date</label>
-                      <input
-                       type="text" 
-                      value={returnDate} onChange={(e)=> setReturnDate(e.target.value)}
-                       placeholder="dd/mm/yyyy" className='border-2 m-2 text-black'  />                                 
-                </form>
-                <div className="grid place-content-center">
-                    <button className="button-outline" onClick={handleSaveBookings}>SUBMIT</button>
-                  </div>
+  return (
+    <div
+      className=" bg-cover bg-no-repeat"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99)), url(${bookingscar})`,
+      }}
+    >
+      {loading ? <Spinner /> : ""}
+      <div className="flex flex-col justify-center items-center h-full sm:h-screen">
+        <div className="sm:border-4 border-4 p-6 sm:mt-[-12px] my-4 rounded sm:p-6">
+          <h1 className="text-white text-5xl sm:text-6xl font-bold font-serif tracking-widest text-center mb-4 sm:mb-10">
+            Bookings
+          </h1>
+          <form className="sm:space-y-4 space-y-4">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="sm:w-full">
+                <label
+                  htmlFor="lastname"
+                  className="text-white font-serif text-xl"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  value={lastname}
+                  onChange={(e) => setLastname(e.target.value)}
+                  placeholder="Enter Lastname"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
               </div>
+              <div className="sm:w-full">
+                <label
+                  htmlFor="firstname"
+                  className="text-white font-serif text-xl"
+                >
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  value={firstname}
+                  onChange={(e) => setFirstname(e.target.value)}
+                  placeholder="Enter Firstname"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="sm:w-[100px]">
+                <label htmlFor="age" className="text-white font-serif text-xl">
+                  Age
+                </label>
+                <input
+                  type="text"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  placeholder="Age"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+              <div className="sm:w-[400px]">
+                <label
+                  htmlFor="email"
+                  className="text-white font-serif text-xl"
+                >
+                  Email
+                </label>
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter a valid Email"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="sm:w-full">
+                <label
+                  htmlFor="phonenumber"
+                  className="text-white font-serif text-xl"
+                >
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="Phone Number"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+              <div className="sm:w-full">
+                <label
+                  htmlFor="carList"
+                  className="text-white font-serif text-xl"
+                >
+                  Car-type
+                </label>
+                <input
+                  type="text"
+                  value={carList}
+                  onChange={(e) => setCarList(e.target.value)}
+                  placeholder="Type the carname"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="sm:w-full">
+                <label
+                  htmlFor="pickupdate"
+                  className="text-white font-serif text-xl"
+                >
+                  Pick-up-date
+                </label>
+                <input
+                  type="text"
+                  value={pickupDate}
+                  onChange={(e) => setPickUpDate(e.target.value)}
+                  placeholder="dd/mm/yyyy"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+              <div className="sm:w-full">
+                <label
+                  htmlFor="returndate"
+                  className="text-white font-serif text-xl"
+                >
+                  Return-date
+                </label>
+                <input
+                  type="text"
+                  value={returnDate}
+                  onChange={(e) => setReturnDate(e.target.value)}
+                  placeholder="dd/mm/yyyy"
+                  className="block py-2 px-4 w-full rounded border-2 border-gray-400 focus:outline-none focus:border-primary text-black"
+                />
+              </div>
+            </div>
+          </form>
 
+          <div className="flex justify-center space-x-8 sm:mt-4 mt-4">
+            <button className="button-outline" onClick={handleSaveBookings}>
+              SUBMIT
+            </button>
+            {/* <Link to={`/bookings/view/:id`}>
+              <button className="button-outline">View</button>
+           </Link> */}
           </div>
-          
-       </div>
+        </div>
+      </div>
+
     </div>
   );
 };
 
 export default CreateBookings;
 
-
-               {/* <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-100"></div> old */}
-
-               {/* <div className="">
-                  <h1 className="text-white text-6xl font-bold font-serif tracking-widest">
-                    Bookings
-                  </h1>
-                  <div className="w-[310px] h-[410px] flex flex-col justify-between items-center
-                   bg-white rounded-lg p-8
-                   border-2 border-black text-white shadow-lg">
-                    <form>
-                      <div>
-                        <label>Lastname</label>
-                        <input type="text" placeholder="Lastname" />
-
-                      </div>
-                       <input type="text" placeholder="Lastname" className="inputClass" />
-                      <input type="text" placeholder="Firstname" className="inputClass" />
-                      <input type="text" placeholder="Age" className="inputClass" />
-                      <input type="text" placeholder="Enter Email Address" className="inputClass" />
-                      <input type="text" placeholder="Enter Phone Number" className="inputClass" />
-                      <select>
-                            <option value="choose country"> choose country </option>
-                            <option value="#">Argentina</option>
-                            <option value="#">Brazil</option>
-                            <option value="#">Chile</option>
-                            <option value="#">Colombia</option>
-                      </select>
-                    
-                      <input type="text" placeholder="Rent a Car" className="inputClass" />
-                      <input type="text" placeholder="pick up Date" className="inputClass" />
-                      <input type="text" placeholder="return Date" className="inputClass" />
-                      <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4">SUBMIT</button>
-                    </form>   
-                  </div>
-                </div> */}

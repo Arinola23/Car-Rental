@@ -5,7 +5,8 @@ import {Link } from "react-router-dom"
 export const About = () => {
   return (
     <div className="dark:bg-black bg-slate-100 dark:text-white duration-300
-    sm:min-h-[600px] sm:grid:place-items-center">
+    sm:h-screen sm:grid:place-items-center min-h-[700px]  ">
+      {/* sm:min-h-[700px]  */}
       <div className="container">
         <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center pt-24">
             <div data-aos ="fade-down"

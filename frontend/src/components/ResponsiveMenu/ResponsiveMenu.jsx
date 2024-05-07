@@ -4,40 +4,7 @@ import {NavLinks} from "../Navbar/navbar";
 import {reg} from "../Navbar/navbar";
 import {Link} from "react-router-dom"
 
-// const NavLinks = [
-//   {
-//     id: "1",
-//     name: "Home",
-//     link: "/#",
-//   },
-//   {
-//     id: "2",
-//     name: "Cars",
-//     link: "/#cars",
-//   },
-//   {
-//     id: "3",
-//     name: "About Us",
-//     link: "/#About",
-//   },
-//   {
-//     id: "4",
-//     name: "Bookings",
-//     link: "/#bookings",
-//   },
-// ];
-//  const reg = [
-//   {
-//     id: "1",
-//     name: "SignUp",
-//     link: "/#sign-up",
-//   },
-//   {
-//     id: "2",
-//     name: "LogIn",
-//     link: "/#log-in",
-//   },
-// ];
+
 
 const ResponsiveMenu = ({ showMenu }) => {
   return (

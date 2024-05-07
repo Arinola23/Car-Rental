@@ -3,6 +3,7 @@ import React from 'react'
 const contact = () => {
   return (
     <div className='dark:bg-black dark:text-white py-14'>
+  
         <div className='container'>
             <div data-aos="fade-up"
                 className='grid grid-cols-1
