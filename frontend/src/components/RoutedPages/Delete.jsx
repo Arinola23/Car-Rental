@@ -6,22 +6,22 @@ import BackButton from '../../components/BackButton'
 import { Link } from 'react-router-dom'
 import Spinner from "../../components/Spinner"
 
-const deleteView = () => {
+const DeleteView = () => {
     const[loading, setLoading ] = useState(false)
     const navigate = useNavigate()
      const { id } = useParams()
-     const{ enqueueSnackbar } =useSnackbar()
+     const{ enqueueSnackbar }=useSnackbar()
 
      const handleDelete = () => {
         setLoading(true)
         axios
-        .delete(`http://localhost:6500/bookings/${id}`)
+        .delete(`${process.env.API}/${id}`)
         .then(() => {
             setLoading(false)
             enqueueSnackbar('Book deleted successfully', {variant: 'success'})
             navigate('/Bookings')
         })
-        .catch((error) =>{
+        .catch((error) =>  {
             setLoading(false)
             enqueueSnackbar('Error', {variant: 'error'})
                 console.error(error)
@@ -43,9 +43,11 @@ const deleteView = () => {
                                     </div>
                                     <div className='bg-white text-black border border-black p-2 ml-2 rounded'
                                     >
-                                        <Link to={"/bookings/edit/:id"}>
-                                        <button>No</button>
-                                        </Link>
+                                        {/* <Link to={`/bookings/edit/${view}`}>
+                                          No
+                                        </Link> */}
+                                     <button onClick={() =>
+                                        navigate(`/bookings/edit/${id}`)}>No</button>
                                     </div>
                               </div>
                          </div>            
@@ -55,4 +57,4 @@ const deleteView = () => {
   )
 }
 
-export default deleteView
+export default DeleteView

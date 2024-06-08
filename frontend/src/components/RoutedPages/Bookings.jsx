@@ -62,6 +62,7 @@ const CreateBookings = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99)), url(${bookingscar})`,
       }}
     >
+      
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col justify-center items-center h-full sm:h-screen">
         <div className="sm:border-4 border-4 p-6 sm:mt-[-12px] my-4 rounded sm:p-6">
@@ -206,7 +207,10 @@ const CreateBookings = () => {
           </div>
         </div>
       </div>
-
+      <div className="sm:w-64 w:40">
+      <useSnackbar/>
+      </div>
+    
     </div>
   );
 };
