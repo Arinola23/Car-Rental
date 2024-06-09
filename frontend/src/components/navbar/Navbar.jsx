@@ -54,7 +54,7 @@ export const reg = [
   },
 ];
 
-const Navbar = ({ theme, setTheme }) => {
+const navbar = ({ theme, setTheme }) => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -140,5 +140,4 @@ const Navbar = ({ theme, setTheme }) => {
     </nav>
   );
 };
-
-export default Navbar;
+export default navbar
