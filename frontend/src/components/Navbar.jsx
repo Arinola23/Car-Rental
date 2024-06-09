@@ -1,6 +1,6 @@
 import React from "react";
 import { BiSolidSun, BiSolidMoon } from "react-icons/bi";
-import ResponsiveMenu from "../ResponsiveMenu/ResponsiveMenu";
+import ResponsiveMenu from "../components/ResponsiveMenu";
 import { useState } from "react";
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 import {Link} from "react-router-dom"

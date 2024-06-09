@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar.jsx";
 import LandInPage from "./components/HomePage/LandInPage";
 import AOS from "aos";
 import "aos/dist/aos.css";

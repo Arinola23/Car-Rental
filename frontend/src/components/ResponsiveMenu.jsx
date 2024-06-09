@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
-import {NavLinks} from "../Navbar/Navbar";
-import {reg} from "../Navbar/Navbar";
+import {NavLinks} from "../components/Navbar";
+import {reg} from "../components/Navbar";
 import {Link} from "react-router-dom"
 
 

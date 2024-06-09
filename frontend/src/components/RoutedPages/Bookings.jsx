@@ -36,8 +36,8 @@ const CreateBookings = () => {
     setLoading(true);
     // console.log(data);
     axios
-      .post(`${process.env.API}/bookings`, data)
-      .then((response) => { 
+    .post(`${process.env.API}/bookings`, data)
+    .then((response) => { 
         const bookingId = response.data._id
         setLoading(false);
         console.log('Bookings succcessfully created')
