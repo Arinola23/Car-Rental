@@ -74,7 +74,7 @@ const carLists = () => {
                             </div>
                             <div className='flex justify-between items-center text-xl font-semibold'>
                                 <p>{car.rentalPrice}</p>
-                                <a href="#">Details</a>
+                                <a href="#"></a>
                             </div >
                             <p className="text-xl font-semibold ">{car.km}</p>
                         </div>          
