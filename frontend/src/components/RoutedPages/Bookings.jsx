@@ -20,6 +20,7 @@ const CreateBookings = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  // const { _id } = useParams();
 
   const handleSaveBookings = () => {
     const data = {
@@ -37,18 +38,18 @@ const CreateBookings = () => {
     axios
       .post(`http://localhost:6500/bookings`, data)
       .then((response) => {
-        const bookingId = response.data._id;
+        const bookingId = response.data._id
         setLoading(false);
-        console.log("Bookings succcessfully created");
+        // console.log(response.data);
 
-        enqueueSnackbar("Bookings successfully created", {
+        enqueueSnackbar("bookings successfully created", {
           variant: "success",
         });
         navigate(`/bookings/view/${bookingId}`); //navigate to booking page
       })
       .catch((error) => {
         setLoading(false);
-        enqueueSnackbar("Error", { variant: "error" });
+        enqueueSnackbar("error", { variant: "error" });
         console.log(error);
       });
   };
@@ -63,7 +64,7 @@ const CreateBookings = () => {
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col justify-center items-center h-full sm:h-screen">
         <div className="sm:border-4 border-4 p-6 sm:mt-[-12px] my-4 rounded sm:p-6">
-          <h1 className="text-white text-5xl sm:text-6xl font-bold font-serif tracking-widest text-center mb-4 sm:mb-10">
+          <h1 className="text-white text-4xl sm:text-6xl font-bold font-serif tracking-widest text-center mb-4 sm:mb-10">
             Bookings
           </h1>
           <form className="sm:space-y-4 space-y-4">

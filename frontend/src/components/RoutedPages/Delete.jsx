@@ -15,16 +15,16 @@ const DeleteView = () => {
   const handleDelete = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:6500/${id}`)
+      .delete(`http://localhost:6500/bookings/${id}`)
       .then(() => {
         setLoading(false);
-        enqueueSnackbar("Book deleted successfully", { variant: "success" });
+        enqueueSnackbar("booking deleted successfully", { variant: "success" });
         navigate("/Bookings");
       })
       .catch((error) => {
         setLoading(false);
-        enqueueSnackbar("Error", { variant: "error" });
-        console.error(error);
+        enqueueSnackbar("error", { variant: "error" });
+        // console.error(error);
       });
   };
   return (

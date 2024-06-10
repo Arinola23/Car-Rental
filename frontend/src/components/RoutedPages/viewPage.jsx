@@ -15,11 +15,11 @@ const viewPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:6500/${id}`)
+      .get(`http://localhost:6500/bookings/${id}`)
       .then((response) => {
         setView(response.data);
         setLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
