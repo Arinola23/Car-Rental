@@ -19,8 +19,7 @@ const CreateBookings = () => {
   const [returnDate, setReturnDate] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const {enqueueSnackbar } = useSnackbar();
-
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveBookings = () => {
     const data = {
@@ -36,15 +35,14 @@ const CreateBookings = () => {
     setLoading(true);
     // console.log(data);
     axios
-    .post(`${process.env.API}/bookings`, data)
-    .then((response) => { 
-        const bookingId = response.data._id
+      .post(`http://localhost:6500/bookings`, data)
+      .then((response) => {
+        const bookingId = response.data._id;
         setLoading(false);
-        console.log('Bookings succcessfully created')
+        console.log("Bookings succcessfully created");
 
         enqueueSnackbar("Bookings successfully created", {
           variant: "success",
-          
         });
         navigate(`/bookings/view/${bookingId}`); //navigate to booking page
       })
@@ -62,7 +60,6 @@ const CreateBookings = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.99)), url(${bookingscar})`,
       }}
     >
-      
       {loading ? <Spinner /> : ""}
       <div className="flex flex-col justify-center items-center h-full sm:h-screen">
         <div className="sm:border-4 border-4 p-6 sm:mt-[-12px] my-4 rounded sm:p-6">
@@ -208,12 +205,10 @@ const CreateBookings = () => {
         </div>
       </div>
       <div className="sm:w-64 w:40">
-      <useSnackbar/>
+        <useSnackbar />
       </div>
-    
     </div>
   );
 };
 
 export default CreateBookings;
-

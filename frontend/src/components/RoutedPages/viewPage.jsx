@@ -15,7 +15,7 @@ const viewPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${process.env.API}/${id}`)
+      .get(`http://localhost:6500/${id}`)
       .then((response) => {
         setView(response.data);
         setLoading(false);

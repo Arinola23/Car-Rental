@@ -22,7 +22,7 @@ const Edit = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${process.env.API}/${id}`)
+      .get(`http://localhost:6500/${id}`)
       .then((response) => {
         setLastname(response.data.lastname);
         setFirstname(response.data.firstname);
@@ -54,7 +54,7 @@ const Edit = () => {
     setLoading(true);
     // console.log(data);
     axios
-      .put(`${process.env.API}/${id}`, data)
+      .put(`http://localhost:6500/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Bookings successfully updated", {
