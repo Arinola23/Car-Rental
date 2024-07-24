@@ -20,7 +20,8 @@ const hirerSchema = mongoose.Schema({
             },  // unique: true, validate: {validator: function(v) {return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}, message: 'please enter a valid email address'
             phoneNumber: {
                 type: String,
-                 required:[true, 'please enter your phone'] 
+                 required:[true, 'please enter your phone'],
+                 unique: true
                 },
             carList: {
                 type: String, 
