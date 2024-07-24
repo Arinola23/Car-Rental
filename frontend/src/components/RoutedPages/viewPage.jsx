@@ -15,7 +15,7 @@ const viewPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:6500/bookings/${id}`)
+      .get(`http://localhost:6501/bookings/${id}`)
       .then((response) => {
         setView(response.data);
         setLoading(false);
