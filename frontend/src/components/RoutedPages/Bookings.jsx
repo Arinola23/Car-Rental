@@ -36,7 +36,8 @@ const CreateBookings = () => {
     setLoading(true);
     // console.log(data);
     axios
-      .post(`http://localhost:6501/bookings`, data)
+      // .post(`http://localhost:6501/bookings`, data)
+      .post(`${import.meta.env.VITE_REACT_APP_API}/bookings`, data)
       .then((response) => {
         const bookingId = response.data._id
         setLoading(false);

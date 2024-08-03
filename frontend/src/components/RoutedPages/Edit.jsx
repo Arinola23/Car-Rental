@@ -22,7 +22,8 @@ const Edit = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:6501/bookings/${id}`)
+      //.get(`http://localhost:6501/bookings/${id}`)
+      .get(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
       .then((response) => {
         setLastname(response.data.lastname);
         setFirstname(response.data.firstname);
@@ -54,7 +55,8 @@ const Edit = () => {
     setLoading(true);
     // console.log(data);
     axios
-      .put(`http://localhost:6501/bookings/${id}`, data)
+    //  .put(`http://localhost:6501/bookings/${id}`, data)
+      .put(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Bookings successfully updated", {

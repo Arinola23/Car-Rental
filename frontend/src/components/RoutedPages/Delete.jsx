@@ -15,7 +15,8 @@ const DeleteView = () => {
   const handleDelete = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:6501/bookings/${id}`)
+      // .delete(`http://localhost:6501/bookings/${id}`)
+      .delete(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("booking deleted successfully", { variant: "success" });

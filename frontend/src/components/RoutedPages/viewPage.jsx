@@ -15,7 +15,8 @@ const viewPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:6501/bookings/${id}`)
+      //.get(`http://localhost:6501/bookings/${id}`)
+      .get(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
       .then((response) => {
         setView(response.data);
         setLoading(false);
