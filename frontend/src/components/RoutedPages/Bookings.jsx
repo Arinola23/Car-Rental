@@ -45,7 +45,8 @@ const CreateBookings = () => {
         enqueueSnackbar("bookings successfully created", {
           variant: "success",
         });
-        navigate(`/bookings/view/${res.data._id}`); //navigate to booking page
+       // navigate(`/bookings/view/${res.data._id}`); //navigate to booking page
+        navigate(`/bookings/view/${data._id}`); //navigate to booking page
       })
       .catch((error) => {
         setLoading(false);
