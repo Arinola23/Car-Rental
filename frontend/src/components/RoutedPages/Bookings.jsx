@@ -20,7 +20,7 @@ const CreateBookings = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  // const { _id } = useParams();
+  // const {_id}  = useParams();
 
   const handleSaveBookings = () => {
     const data = {
@@ -38,15 +38,14 @@ const CreateBookings = () => {
     axios
       // .post(`http://localhost:6501/bookings`, data)
       .post(`${import.meta.env.VITE_REACT_APP_API}/bookings`, data)
-      .then((response) => {
-        const bookingId = response.data._id
+      .then((res) => {
+        //const bookingId = res.data._id
         setLoading(false);
-        // console.log(response.data);
-
+        //console.log(bookingId)
         enqueueSnackbar("bookings successfully created", {
           variant: "success",
         });
-        navigate(`/bookings/view/${bookingId}`); //navigate to booking page
+        navigate(`/bookings/view/${res.data._id}`); //navigate to booking page
       })
       .catch((error) => {
         setLoading(false);
