@@ -8,23 +8,13 @@ import Delete from "./Delete";
 
 const viewPage = () => {
   const [view, setView] = useState({});
-  const [showDelete, setShowDelete] = useState(false);
-  const [loading, setLoading] = useState(false);
+  //const [showDelete, setShowDelete] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const location = useLocation();
+  // const location = useLocation();
 
 
   useEffect(() => {
-    const bookingData = location.state?.booking;
-
-    if (bookingData) {
-      // If booking data is passed via state, use it
-      setView(bookingData);
-      setLoading(false);
-    } else {
-      // Otherwise, fetch the booking data from the server
-    setLoading(true);
-
     axios
       //.get(`http://localhost:6501/bookings/${id}`)
       .get(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
@@ -37,8 +27,8 @@ const viewPage = () => {
         console.log(error);
         setLoading(false);
       });
-  }
-  }, [id, location.state]);
+  
+  }, [id]);
 
   return (
     <div>
