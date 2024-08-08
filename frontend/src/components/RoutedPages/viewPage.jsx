@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import Spinner from "../../components/Spinner";
 import { Link } from "react-router-dom";
@@ -11,9 +11,20 @@ const viewPage = () => {
   const [showDelete, setShowDelete] = useState(false);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const location = useLocation();
+
 
   useEffect(() => {
+    const bookingData = location.state?.booking;
+
+    if (bookingData) {
+      // If booking data is passed via state, use it
+      setView(bookingData);
+      setLoading(false);
+    } else {
+      // Otherwise, fetch the booking data from the server
     setLoading(true);
+
     axios
       //.get(`http://localhost:6501/bookings/${id}`)
       .get(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
@@ -26,7 +37,8 @@ const viewPage = () => {
         console.log(error);
         setLoading(false);
       });
-  }, []);
+  }
+  }, [id, location.state]);
 
   return (
     <div>

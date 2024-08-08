@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import bookingscar from "../../assets/landingCar.jpg";
 import { SlCalender } from "react-icons/sl";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import BackButton from "../../components/BackButton";
 import Spinner from "../../components/Spinner";
-import { Link } from "react-router-dom";
 
 const CreateBookings = () => {
   const [lastname, setLastname] = useState("");
@@ -18,9 +17,32 @@ const CreateBookings = () => {
   const [pickupDate, setPickUpDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [loading, setLoading] = useState(false);
+  const [bookingId, setBookingId] = useState(null); // New state variable for booking ID
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  // const {_id}  = useParams();
+  const {id}  = useParams();
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`${import.meta.env.VITE_REACT_APP_API}/bookings/${id}`)
+        .then((res) => {
+          const booking = res.data;
+          setLastname(booking.lastname);
+          setFirstname(booking.firstname);
+          setAge(booking.age);
+          setEmail(booking.email);
+          setPhoneNumber(booking.phoneNumber);
+          setCarList(booking.carList);
+          setPickUpDate(booking.pickupDate);
+          setReturnDate(booking.returnDate);
+        })
+        .catch((error) => {
+          enqueueSnackbar("Failed to fetch booking details", { variant: "error" });
+          console.error("Error fetching booking details:", error);
+        });
+    }
+  }, [id, enqueueSnackbar]);
 
   const handleSaveBookings = () => {
     const data = {
@@ -39,18 +61,20 @@ const CreateBookings = () => {
       // .post(`http://localhost:6501/bookings`, data)
       .post(`${import.meta.env.VITE_REACT_APP_API}/bookings`, data)
       .then((res) => {
-        //const bookingId = res.data._id
+        const bookingId = res.data._id
         setLoading(false);
         //console.log(bookingId)
         enqueueSnackbar("bookings successfully created", {
           variant: "success",
         });
-       // navigate(`/bookings/view/${res.data._id}`); //navigate to booking page
-        navigate(`/bookings/view/${data._id}`); //navigate to booking page
+             // Navigate to booking page, passing the data along with navigation
+      navigate(`/bookings/view/${bookingId}`, { state: { booking: res.data } });
+       // navigate(`/bookings`); //navigate to booking page
       })
+      
       .catch((error) => {
         setLoading(false);
-        enqueueSnackbar("error", { variant: "error" });
+        enqueueSnackbar("failed to create bookings", { variant: "error" });
         console.log(error);
       });
   };
@@ -200,9 +224,9 @@ const CreateBookings = () => {
             <button className="button-outline" onClick={handleSaveBookings}>
               SUBMIT
             </button>
-            {/* <Link to={`/bookings/view/:id`}>
-              <button className="button-outline">View</button>
-           </Link> */}
+            <Link to={`/bookings/view/${bookingId}`}>
+              <button className="button-outline" >View</button>
+           </Link>
           </div>
         </div>
       </div>
